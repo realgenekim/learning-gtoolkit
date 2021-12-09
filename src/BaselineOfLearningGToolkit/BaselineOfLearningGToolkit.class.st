@@ -1,6 +1,6 @@
 Class {
 	#name : #BaselineOfLearningGToolkit,
-	#superclass : #Object,
+	#superclass : #BaselineOf,
 	#category : #BaselineOfLearningGToolkit
 }
 
