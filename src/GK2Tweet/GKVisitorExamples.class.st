@@ -9,9 +9,11 @@ GKVisitorExamples >> ast [
 	<gtExample>
 	| ast |
 	ast := LeParser parse: 
-'#Header
+'#Header111
 
-Intro paragraph
+Intro paragraph 123
+
+Second paragraph 234
 
 ##Header 2
 
@@ -48,7 +50,7 @@ GKVisitorExamples >> parsed [
 		description: (v headers size asString).
 		
 	nTexts := v textNodes size.
-	self assert: nTexts = 6
+	self assert: nTexts = 8
 		description: 'nTexts: ' , (nTexts asString).
 
 	v connections at: 1.

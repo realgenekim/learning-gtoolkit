@@ -111,9 +111,9 @@ GKHeaderVisitor >> visitHeader: aHeader [
 GKHeaderVisitor >> visitText: aText [
 
 	super visitText: aText.
-	self textNodes add: aText.
-
-
+	((aText parent isMemberOf: LeHeaderNode) not)
+	& (aText startPosition ~= aText stopPosition) ifTrue: [ 
+		self textNodes add: aText ]
 ]
 
 { #category : #accessing }
