@@ -25,11 +25,11 @@ Paragraph 2
 *italic*
 **bold**'.
 
-	^ast.
+	^ast. 
 ]
 
 { #category : #accessing }
-GKVisitorExamples >> parsed [
+GKVisitorExamples >> parsed [ 
 	<gtExample>
 	| v |
 	v := GKHeaderVisitor new.
@@ -37,8 +37,15 @@ GKVisitorExamples >> parsed [
 
 
 	self assert: v connections size = 5.
-	self assert: v connections size = 5.
+	self assert: v headers size = 6
+		description: (v headers size asString).
 
 	v connections at: 1.
 	^ v.
+]
+
+{ #category : #accessing }
+GKVisitorExamples >> runTests [
+	<gtExample>
+	self parsed.
 ]
