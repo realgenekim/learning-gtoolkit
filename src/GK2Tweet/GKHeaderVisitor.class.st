@@ -16,6 +16,14 @@ GKHeaderVisitor >> connections [
 ]
 
 { #category : #accessing }
+GKHeaderVisitor >> grTextNodesFor: aView [
+  <gtView>
+   ^ aView list 
+     title: 'TextNodes';
+     items: [textNodes]
+]
+
+{ #category : #accessing }
 GKHeaderVisitor >> gtEdgesConnectionsFor: aView [
   <gtView>
    ^ aView list 
@@ -94,11 +102,18 @@ GKHeaderVisitor >> visitHeader: aHeader [
 
 	[ aHeader headerLevel > stack top headerLevel ] whileFalse: [ 
 		stack pop ].
-		
-	connections add: stack top -> aHeader .
-	stack push: aHeader.
-	
-		
+
+	connections add: stack top -> aHeader.
+	stack push: aHeader
+]
+
+{ #category : #accessing }
+GKHeaderVisitor >> visitText: aText [
+
+	super visitText: aText.
+	self textNodes add: aText.
+
+
 ]
 
 { #category : #accessing }

@@ -49,7 +49,7 @@ GKVisitorExamples >> parsed [
 		
 	nTexts := v textNodes size.
 	self assert: nTexts = 6
-		description: 'nTexts: ' . (nTexts asString).
+		description: 'nTexts: ' , (nTexts asString).
 
 	v connections at: 1.
 	^ v.
