@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'headers',
 		'stack',
-		'connections'
+		'connections',
+		'textNodes'
 	],
 	#category : #GK2Tweet
 }
@@ -64,6 +65,8 @@ GKHeaderVisitor >> initialize [
 	headers add: stack top.
 	connections := OrderedCollection new.
 	
+	textNodes := OrderedCollection new.
+	
 ]
 
 { #category : #accessing }
@@ -75,6 +78,11 @@ GKHeaderVisitor >> mondrian [
 	m edges connectAssociations: self connections.
 	m layout radialTree.
 	^m
+]
+
+{ #category : #accessing }
+GKHeaderVisitor >> textNodes [
+	^ textNodes.
 ]
 
 { #category : #accessing }

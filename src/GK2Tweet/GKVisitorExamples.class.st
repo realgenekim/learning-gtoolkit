@@ -9,7 +9,7 @@ GKVisitorExamples >> ast [
 	<gtExample>
 	| ast |
 	ast := LeParser parse: 
-	'#Header
+'#Header
 
 Intro paragraph
 
@@ -17,9 +17,16 @@ Intro paragraph
 
 Paragraph 2
 
-
 ###Header 3
+
+Paragraph 3 
+
 ###Header 4
+
+Paragraph 4a
+
+Paragraph 4b
+
 # Header 1
 `fixed size`
 *italic*
@@ -31,7 +38,7 @@ Paragraph 2
 { #category : #accessing }
 GKVisitorExamples >> parsed [ 
 	<gtExample>
-	| v |
+	| v nTexts |
 	v := GKHeaderVisitor new.
 	v accept: self ast.
 
@@ -39,6 +46,10 @@ GKVisitorExamples >> parsed [
 	self assert: v connections size = 5.
 	self assert: v headers size = 6
 		description: (v headers size asString).
+		
+	nTexts := v textNodes size.
+	self assert: nTexts = 6
+		description: 'nTexts: ' . (nTexts asString).
 
 	v connections at: 1.
 	^ v.
