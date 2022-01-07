@@ -83,6 +83,13 @@ GKHeaderVisitor >> mondrian [
 	
 	m := GtMondrian new.
 	m nodes with: self headers.
+	m nodes 
+		shape: 
+			[ :x | (BlElement new 
+				border: (BlBorder paint: Color red);
+				geometry: BlEllipseGeometry new; 
+					size: 8 @8 )] ;
+		with: self textNodes.
 	m edges connectAssociations: self connections.
 	m layout radialTree.
 	^m
@@ -111,9 +118,12 @@ GKHeaderVisitor >> visitHeader: aHeader [
 GKHeaderVisitor >> visitText: aText [
 
 	super visitText: aText.
+	
 	((aText parent isMemberOf: LeHeaderNode) not)
 	& (aText startPosition ~= aText stopPosition) ifTrue: [ 
-		self textNodes add: aText ]
+		self textNodes add: aText.
+		self connections add: stack top -> aText.
+		]
 ]
 
 { #category : #accessing }
