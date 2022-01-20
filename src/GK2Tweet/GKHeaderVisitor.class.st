@@ -82,16 +82,17 @@ GKHeaderVisitor >> mondrian [
 	| m |
 	
 	m := GtMondrian new.
-	m nodes with: self headers.
+	m nodes with: (self headers).
 	m nodes 
 		shape: 
 			[ :x | (BlElement new 
 				border: (BlBorder paint: Color red);
 				geometry: BlEllipseGeometry new; 
 					size: 8 @8 )] ;
-		with: self textNodes.
+		with: (self textNodes).
 	m edges connectAssociations: self connections.
-	m layout radialTree.
+	m layout tree.
+	"m layout radialTree."
 	^m
 ]
 
