@@ -13,6 +13,8 @@ GKVisitorExamples >> ast [
 
 Intro paragraph 123
 
+   The more consequential and unforgiving the Delivery environment is (e.g., military operations, aviation, high tempo manufacturing), the more reliant we must on better Planning and Preparation — they become our only way to find and deflect bad outcomes
+
 Intro paragraph 123
 
 Second paragraph 234
@@ -80,7 +82,7 @@ GKVisitorExamples >> parsed [
 ]
 
 { #category : #accessing }
-GKVisitorExamples >> runMondian [
+GKVisitorExamples >> runMondrian [
 	<gtExample>
 	| v |
 	v := GKHeaderVisitor new.
@@ -91,5 +93,5 @@ GKVisitorExamples >> runMondian [
 { #category : #accessing }
 GKVisitorExamples >> runTests [
 	<gtExample>
-	self parsed.
+	^ self parsed.
 ]

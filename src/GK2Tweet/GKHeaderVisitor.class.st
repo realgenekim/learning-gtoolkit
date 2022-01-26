@@ -5,7 +5,8 @@ Class {
 		'headers',
 		'stack',
 		'connections',
-		'textNodes'
+		'textNodes',
+		'paraAccum'
 	],
 	#category : #GK2Tweet
 }
@@ -75,6 +76,8 @@ GKHeaderVisitor >> initialize [
 	
 	textNodes := OrderedCollection new.
 	
+	paraAccum := 'text: '.
+	
 ]
 
 { #category : #accessing }
@@ -91,7 +94,8 @@ GKHeaderVisitor >> mondrian [
 					size: 8 @8 )] ;
 		with: (self textNodes).
 	m edges connectAssociations: self connections.
-	m layout tree.
+	m layout force nbIterations: 50. 
+"	m layout tree."
 	"m layout radialTree."
 	^m
 ]
@@ -117,6 +121,28 @@ GKHeaderVisitor >> visitHeader: aHeader [
 
 { #category : #accessing }
 GKHeaderVisitor >> visitText: aText [
+
+	super visitText: aText.
+	
+	" if empty string, emit paraAccum;
+	  otherwise, add to paraAccum " 
+	((aText parent isMemberOf: LeHeaderNode) not) ifTrue: [
+		(aText startPosition = aText stopPosition) 
+		ifTrue: [
+			(paraAccum ~= '') ifTrue: [
+				self textNodes add: paraAccum.
+				self connections add: stack top -> paraAccum.
+				paraAccum := ''. ]
+		]
+		ifFalse: [
+			paraAccum := paraAccum , (aText text value)  .
+		]
+	]
+
+]
+
+{ #category : #accessing }
+GKHeaderVisitor >> visitTextOld: aText [
 
 	super visitText: aText.
 	
